@@ -1,0 +1,288 @@
+<!-- <!DOCTYPE html> -->
+<meta charset="utf-8">
+<head>
+  <title>Force layout (with collision detection)</title>
+</head>
+
+<style>
+    #tooltip.hidden {
+   			 display: none;
+   		}
+
+   	#tooltip {
+   			position: absolute;
+   			 width: 500px;
+   			 height: 160px;
+   			 padding: 20px;
+   			 background-color: white;
+			 opacity: 0.9;
+			 border: solid #ffc2ff 1px;
+   			 pointer-events: none;
+   			 z-index:10;
+			 font-family:sans-serif;
+			 font-size:14px;
+			 color:#b8b8b8;
+			 display: flex;
+             justify-content: center;
+             align-items: center;
+		}
+
+</style>
+
+<body>
+  <div id="tooltip" class="hidden">
+        <p><span id="value">100</span></p>
+  </div>
+
+  <div id="content">
+    <svg width="800" height="550">
+	<rect x="80" y="500" width="20" height="20" fill="#ebebeb" />
+	<rect x="80" y="530" width="20" height="20" fill="#c0e8fa" />
+	<text x="110" y="515" font-family="sans-serif" font-size="14px" fill="#b8b8b8">Main Drivers for Children & Teenager Homelessness</text>
+	<text x="110" y="545" font-family="sans-serif" font-size="14px" fill="#b8b8b8">Main Drivers for Adult Homelessness</text>
+	<text x="70" y="70" font-family="sans-serif" font-size="14px" fill="black">NYC Homelessness Driver Diagram: Click on for More Details</text>
+    </svg>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+
+  <script>
+
+var width = 800, height = 530
+
+var numNodes = 9
+
+var color = ['#ebebeb', '#ebebeb', '#ebebeb', "#ebebeb", "#ebebeb", "#c0e8fa", "#c0e8fa", "#c0e8fa", "#75d1fa"];
+var s=20
+var radius = [Math.sqrt(37)*s, Math.sqrt(3)*s, Math.sqrt(2.5)*s, Math.sqrt(1.5)*s, Math.sqrt(3)*s, Math.sqrt(13)*s, Math.sqrt(5)*s, Math.sqrt(2)*s, Math.sqrt(33)*s]
+var DomesticViolence="37% of NYC homeless population are children and teenagers. People may be curious why there are so many homeless children, and the answer is Domestic Violence. In 2018, around 40% of families were found eligible for DHS shelter due to a history of domestic violence. Domestic violence shelters served 3,760 individuals, and nearly two-thirds of them were children. They came to shelters with or without other family members. Under the current COVID-19 crisis, these children’s health and safety become concerns since schools no longer provide services to them."
+var MentalIllness="Another main driver for homeless children and teenagers is Family Dynamics. For example, when children themselves get a mental illness, or their family members get a mental illness, in both situations, children may leave home and seek shelter."
+var Neglect="Another main driver for homeless children and teenagers is Family Dynamics. For example, children may choose to leave home due to neglect or abuse from their parents. "
+var Gender="Another main driver for homeless children and teenagers is Family Dynamics. For example, teenagers may choose to leave home when their families reject their sexual orientations and gender identities. For instance, LGBTQ young adults are more than twice as likely to experience homelessness as their non-LGBTQ peers."
+var SubstanceAbuse="Another main driver for homeless children and teenagers is Family Dynamics. For example, when one family member struggles with Substance Abuse such as addictions to alcohol or drugs, other family members may be affected and forced to move out in search of temporary shelters."
+var ReleasedfromJails="16% of individuals entering DHS single adult shelters came directly from State correctional facilities. State prisons too often release parolees directly to City shelters instead of assisting them with adequate re-entry planning and housing placements. In 2017 and 2018, over half of the individuals released under community supervision by DOCCS were sent directly to City homeless shelters. Under the current COVID-19 crisis, many jails suffer from poor hygiene conditions and mass infections. If releasing prisoners back to the city, there is a challenge to stop the virus spread as well."
+var PhysicalConditions="One more driver for adult homelessness is the poor execution of deinstitutionalization. If a person released from institutional care such as a psychiatric hospital has no accommodations, this person will be transferred to care in the community. In this case, the closures of psychiatric hospitals contribute to homelessness."
+var Others="Other minor drivers of homelessness include Migration, Bereavement, Victim of a Crime, etc. "
+var RentBurden="63% of NYC homeless population are adults, and around half of them come to shelters because of rent burden & eviction. Despite growing rental prices over the years, the income for lower percentiles remains flat, and the allowance given to people moving out of shelters doesn't change. For example, the rent for a two-bedroom apartment in NYC is projected to be $1,951 in 2020. However, a three-person family with children only receives a maximum $400 shelter allowance from the State. What's worse? Due to the current COVID-19 crisis, many industries like traveling and restaurants have to lay off employees. This will cause more people to face rent burden & eviction due to this unexpected unemployment, especially for people without enough savings. "
+var description = [DomesticViolence, MentalIllness, Neglect, Gender,
+                   SubstanceAbuse, ReleasedfromJails, PhysicalConditions, Others, RentBurden];
+
+var nodes = d3.range(numNodes).map(function(d, i) {
+  return {
+    category: i % 9
+  }
+});
+
+var simulation = d3.forceSimulation(nodes)
+  .force('charge', d3.forceManyBody().strength(63))
+  .force('center', d3.forceCenter(width / 2, height / 2))
+  .force('collision', d3.forceCollide().radius(function(d) {
+    return radius[d.category]
+  }))
+  .on('tick', ticked);
+ 
+
+function ticked() {
+  var u = d3.select('svg')
+    .selectAll('circle')
+    .data(nodes)
+
+  var Tooltip = d3.select("#div_template")
+	
+  var mouseover = function(d) {
+    Tooltip
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "#ffc2ff")
+	  .style("stroke-width", "3px")
+      .style("opacity", 1)
+	  .transition()
+	  .duration(1000)
+	  .attr("r",function(d){
+	  if (radius[d.category]==Math.sqrt(33)*s)
+	     return 180;
+	  else 
+	     return radius[d.category];
+	  })
+  }
+
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 1)
+	  .transition()
+	  .duration(1000)
+	  .attr("r",function(d) {
+      return radius[d.category];
+    })
+  }
+
+  u.enter()
+    .append('circle')
+    .attr('r', function(d) {
+      return radius[d.category];
+    })
+	.style('fill', function(d) {
+      return color[d.category];
+    })
+    .merge(u)
+    .attr('cx', function(d) {
+      return d.x
+    })
+    .attr('cy', function(d) {
+      return d.y
+    })
+	.on("click",function(d) {
+   					var xPosition = 100;
+   					 var yPosition = 200
+   					 d3.select("#tooltip")
+   					 .style("left", xPosition + "px")
+   					 .style("top", yPosition + "px")
+   					 .select("#value")
+   					 .html("<p>" + description[d.category] +"</p>")
+   			 d3.select("#tooltip").classed("hidden", false);
+   			 })
+   	.on("mouseout", function() {
+   				 d3.select("#tooltip").classed("hidden", true);
+   			 })
+    .on("mouseover", mouseover)
+    .on("mouseleave", mouseleave);
+
+u.enter()
+    .append('text')
+	.text("Rent Burden")
+    .attr('x', 418)
+	.attr('y', 310)
+	.attr("font-family","sans-serif")
+	.attr("font-size","24px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("& Eviction")
+    .attr('x', 428)
+	.attr('y', 340)
+	.attr("font-family","sans-serif")
+	.attr("font-size","24px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("33%")
+    .attr('x', 448)
+	.attr('y', 390)
+	.attr("font-family","sans-serif")
+	.attr("font-size","36px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Domestic Violence")
+    .attr('x', 113)
+	.attr('y', 275)
+	.attr("font-family","sans-serif")
+	.attr("font-size","24px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("37%")
+    .attr('x', 170)
+	.attr('y', 325)
+	.attr("font-family","sans-serif")
+	.attr("font-size","36px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Released")
+    .attr('x', 430)
+	.attr('y', 150)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("from Jails")
+    .attr('x', 430)
+	.attr('y', 170)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Physical")
+    .attr('x', 344)
+	.attr('y', 450)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Conditions")
+    .attr('x', 338)
+	.attr('y', 470)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Others")
+    .attr('x', 313)
+	.attr('y', 120)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Substance")
+    .attr('x', 261.5)
+	.attr('y', 161)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Abuse")
+    .attr('x', 277)
+	.attr('y', 180)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Mental")
+    .attr('x', 534)
+	.attr('y', 205)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Illness")
+    .attr('x', 534.5)
+	.attr('y', 225)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Gender")
+    .attr('x', 508)
+	.attr('y', 478)
+	.attr("font-family","sans-serif")
+	.attr("font-size","12px")
+	.attr("fill","white");
+u.enter()
+    .append('text')
+	.text("Neglect")
+    .attr('x', 338)
+	.attr('y', 173)
+	.attr("font-family","sans-serif")
+	.attr("font-size","14px")
+	.attr("fill","white");
+	
+  u.exit().remove()
+}
+  </script>
+
+	
+</body>
+</html>
