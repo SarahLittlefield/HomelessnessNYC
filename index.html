@@ -18,7 +18,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="clean-blog.css" rel="stylesheet">
+    <link href="css/clean-blog2.css" rel="stylesheet">
 	
     <style>
 
@@ -31,8 +31,8 @@
 		svg {
 			width:100%;
 			height:600px;
-			padding-left:5%;
-			padding-right:50px;		
+			padding-left:10%;
+			padding-right:10px;		
 		}
 		
 		h1 {
@@ -41,11 +41,12 @@
 			line-height:1.3;
 		}
 		
-		#firstvisualdiv, #secondvisualdiv, #fourthvisualdiv {
-        position: -webkit-sticky;
+		#firstvisualdiv, #secondvisualdiv, #thirdvisualdiv {
+          position: -webkit-sticky;
           position: sticky;
           top: -1px;
     	}
+		
     	
    .text1opacity, .text2opacity, .text3opacity {
         font-size:25px;
@@ -64,25 +65,38 @@
 		.active {
         	opacity:1;
     	}
-
-
-
+ 
+    #anchor {
+     color: grey;
+	 font-size:14px;
+	 padding: 60px;
+      }
+	  
+	#move{
+	padding: 20px; 
+	margin-left:30px;
+	}
+	
 	</style>
 </head>
 
 
 <body>
+  <a href="#firstvisualdiv" id="anchor">NYC Homelessness Demographics</a>
+  <a href="#secondvisualdiv" id="anchor">Spatial Risk Diagram</a>
+  <a href="#thirdvisualdiv" id="anchor">Policies Over the History</a>
+  <a href="#fourthvisualdiv" id="anchor">Possible Solutions</a>
+
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('1Title.png')">
+  <header class="masthead" style="background-image: url('image/1Title.png')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1>Tackling Homelessness At Its Roots:</h1>
-            <h2 class="subheading"> Author: Jingyi Liu & Akshay Choudhary</h2>
-            <span class="meta">Under Current NYC Coronavirus Crisis  
-              <br>Storytelling Midterm Presentation</span>
+            <h2 class="subheading"> Evaluating Rent Burden & Eviction as a Risk Factor for Homelessness 
+			  <br>Under Current NYC Coronavirus Crisis</h2>
           </div>
         </div>
       </div>
@@ -91,204 +105,82 @@
 
   <!-- Story Begins -->
   <main role="main" class="container" >
-     <div class="row">
-     	<div class="col-10">
-     		<br><br>
-     		<h1>Rent Burden, Eviction, & Homelessness</h1>
-     		<hr>
-     	</div>
-     </div>
+
      <div class="row">
      	<div class="col-4">
      	<br><br>
 		<h2>Drivers of Homelessness</h2>
 		<br><br>
-     	<p>When it comes to visualizations, we first want to show reasons why people become homeless. For example, most children come to shelters because of domestic violence and family conflict. In contrast, the main driver for a homeless adult is rent burden & eviction, accounting for 30% of the total homeless population.</p>    	
-     	<p>When the user clicks on a certain group of people, we plan to have a pop-up describing more details. Like what are the specific reasons contributing to <span style="color: #ebcc34;font-size:20px"><b>yellow-point</b></span> family conflict? Sources for data and information come from a council-published PDF online called “Our Homelessness Crisis the Case for Change.” </p>   	
-     	<p>Similarly, for <span style="color: #429bf5;font-size:20px"><b>blue points</b></span>, we will talk about the lack of allowance for low-income people, versus increased rent burden at NYC. This visualization will be followed by a paragraph arguing that rent burden & eviction might cause more homeless population under the current coronavirus crisis at NYC, due to higher-rate unemployment and a possible economic recession. And our goal is to reveal this issue and provide possible solutions.</p>
-     	</div>
+     	<p>In the NYC shelter population, 63% of them are adults, and 37% of them are children and teenagers. There are several drivers contributing to homelessness, and we will focus on rent burden and eviction on this webpage, the factor that accounts for 33% homeless population, which is also the major reason why adults become homeless. However, before talking about the rent burden in detail, we would also like to introduce all the drivers of homelessness briefly. </p>    	
+     	<p>People may be surprised that why there are so many homeless children. The reason is because of Domestic Violence and Family Dynamics. 37% of homeless people choose to leave homes due to domestic violence, and nearly two-thirds of them were children. Apart from this, 10% of people become homeless due to Family Dynamics, caused by Substance Abuse, Neglect at Home, Mental Illness, and Gender Identity Issues. </p>   	
+     	<p>Under the current Covid-19 crisis, the hygiene conditions in shelters become vulnerable. People crowding in high-density shelters are easier to get infected. So, if possible, we hope that these homeless children could go back home. In contrast, most adults living in shelters due to rent burden and eviction have no choices at all. </p>
+     	<p>The worse thing is that more people may become homeless because of current high-rate unemployment. Due to Covid-19, many industries like restaurants and traveling are laying off people. Without enough savings, especially for originally low-income people, the rent burden and eviction risk will dramatically increase, possibly leading to homelessness. We certainly don’t want this to happen, especially when the hygiene conditions in shelters become risky. Unfortunately, this unemployment caused by Covid-19 is not guaranteed to be recovered any time soon. Temporary policies, such as eviction order suspension, may not work well in the long term, and therefore we are here to analyze the NYC rent burden in detail. We will also dive into housing policies over the years to provide possible solutions to eviction prevention.</p>
+		<p>Apart from this rent burden as a major driver, some other drivers for adult homelessness include physical care, jail release, migration, and so on. </p>
+		<i>Info. Source: online PDF Our Homelessness Crisis: The Case For Change @ https://council.nyc.gov/data/homeless/ </i>
+		</div>
      	<div class="col-8">
      		<div id="firstvisualdiv">
-			<img class="mySlides" src="https://github.com/Jingyi-Arch/Jingyi-Arch.github.io/blob/master/2.driver.JPG?raw=true" width="700" hspace="50" vspace="60">
-            <img class="mySlides" src="https://raw.githubusercontent.com/Jingyi-Arch/Jingyi-Arch.github.io/master/3.driver.JPG?raw=true" width="700" hspace="50" vspace="60">
-            <img class="mySlides" src="https://github.com/Jingyi-Arch/Jingyi-Arch.github.io/blob/master/4.driver.JPG?raw=true" width="700" hspace="50" vspace="60">
+			<iframe width="900" height="650" src="./image/8FinalBubbleDiagram.html" frameborder="0"></iframe>
      		</div>
      	</div>
      	<div class="col-4">
      	<br><br>
-		<h2 id="img1">NYC Rent and Income Over the Years</h2>
+		<h2>Spatial Risk Diagram</h2>
      	<br><br>
-     	<p>Rent in New York is one of the highest ones in the U.S. Over the years, the rental price keeps growing dramatically, despite moderate increases in salaries. The increased pressure on rent burden is especially obvious for low-income people. Although rent keeps increasing, the allowance or subsidies to help homeless people rent accommodation doesn’t change.</p>
-     	<p id="text1">Data for this graph mainly comes from NYC Open Data and American Community Survey (ACS).</p>
+     	<p>For the preventive measures to be implemented effectively, the problem of homelessness needs to be identified effectively. This map shows a risk index created for homelessness at the census tract level of New York city. It shows that some areas are more prone to the people becoming  homeless based on certain characteristics. </p>
+		<p>A series of factors are included in creating this index which are supposed to be a cause for homelessness. These factors include rental burden (percentage of income spent on rent), unemployment rate, disability, poor mental and physical health, prevalence of binge drinking & number of evictions filed. Data available for these factors is from the year 2018. A simple average of each factor is taken to give equal weightage to each factor as exact weightage of each factor is unclear and needs further exploration. </p>
+		<p>Finally, the risk index for each tract is created by assuming a hypothetical census tract that has the worst possible value for each risk factor. Each census tract is ranked based on the similarity of the tract with the hypothetical census tract creating a relative risk index for each census tract in new york city. Ranking 1 represents the complete match with the hypothetical census tract and is therefore the highest risk area, whereas 2141 represents the least matching with the hypothetical and is least risky area for homelessness. </p>
+		<i>Citation: https://learn.arcgis.com/en/projects/help-end-homelessness/</i>
      	</div>
      	<div class="col-8">
      		<div id="secondvisualdiv">
+			<iframe id="move" width="100%" height="700" src="./image/map_final.html" frameborder="0" ></iframe>
      		</div>
      	</div>
 		<div class="col-4">
      	<br><br>
-		<h2 id="img2">Mapping Rent Burden & Eviction </h2>
+		<h2>Housing Policies & Rent Burden Over the History</h2>
      	<br><br>
-		<p>To this end, we are interested in how many people are facing rent burdens and where they are located. We will plot a map with two layers. </p>
-     	<p id="text2">The rent burden layer has different colors for different community districts, and the darkness represents the burden level. The eviction layers show bubbles where evictions happen, and the bubble size represents frequency.</p>
-     	</div>
-     	<div class="col-8">
-     		<div id="thirdvisualdiv">
-     		</div>
-     	</div>
-		<div class="col-4">
-     	<br><br>
-		<h2 id="img3">Not Enough Saving Under Crisis  </h2>
-     	<br><br>
-     	<p>After seeing previous visualizations, we already know who severe the rent burden is in NYC. Unfortunately, the rent burden will probably affect more people under the current coronavirus crisis. Many companies in fields like transportation, restaurant, and tourism have to lay off people. Unemployed people with insufficient savings have to face eviction risk.</p>
-     	<p>Looking at columns of household annual income & median all household saving, we find that low-income people don’t usually have habit saving money.  Many of them spend more than 50% income on rent. Imagine that when they lose a job, there will be huge financial pressure on them, in the worst scenario leading to eviction and homelessness. </p>
-     	<p id="text3">We will <span style="color: #ebcc34;font-size:30px"><b>highlight</b></span> some important trends and data on this graph, so when the user clicks on the highlights, they can see more analysis. </p>
+     	<p>On December 5, 1979, in a landmark decision, the New York State Supreme Court ordered the City and State to provide shelter for homeless men. After two years of negotiation, the court decision Callahan v. Carey established the right to shelter in New York City. In the decades that followed, tackling the pervasive problem of homelessness spanned through mayors from across the political spectrum—from Dinkins focus on permanent shelter to Guiliani’s punitive approach. In the 21st century, Bloomberg sharpened regulation, and de Blasio shifted the conversation from a right to shelter to a right to housing. </p>
+		<p>However, the problem keeps growing, and today New Yorkers are looking to innovative solutions to provide permanent shelter to individuals experiencing homelessness. </p>
+     	<p> Looking at the percent change from 2006 to 2016, the Great Recession caused wages to fall and homelessness to rise. Yet, as the economy recovered, the plight of homeless New Yorkers did not. Political leaders and activists point to a rise in inequality and lack of access to opportunity in New York City, particularly focusing on the inadequate amount of affordable housing, in an increasingly unaffordable housing market. </p>
+     	<p>“We can’t solve homelessness without addressing the affordability and stability crisis” Giselle Routhier, policy director at Coalition for the Homeless.</p>
+		<i>Info. Source: https://ny.curbed.com/2020/2/25/21146143/homelessness-new-york-city-how-to-fix</i>
 		</div>
      	<div class="col-8">
-     		<div id="fourthvisualdiv">
+     		<div id="thirdvisualdiv">
+			<a class="w3-btn-floating" onclick="plusDivs(-1), history.go(0)" VALUE="Refresh">&#10094;</a>
+            <a class="w3-btn-floating" onclick="plusDivs(+1)">&#10095;</a>
+			<text x="100" y="100" font-family="sans-serif" font-size="1px" fill="#b8b8b8">Please Click on the Arrow to Switch Between Two Graphs</text>
+			<iframe class="mySlides" width="800" height="600" src="./image/time_series_final.html" frameborder="0" ></iframe>
+			<iframe class="mySlides" width="800" height="600" src="./image/animatedLineChart.html" frameborder="0" ></iframe>
      		</div>
      	</div>
 		<div class="col-12">
+		<div id="fourthvisualdiv">
 		<br><br>
-		<h2>Recommendations </h2>
-     	<p>In the end, we aim to provide some potential solutions to policymakers, preventing homelessness due to rent burden and eviction, especially under the crisis of coronavirus. </p>
-     	<p>•	Policy reform for renters in NYC 
-                •	Eviction prevention
-                •	Universal basic income 
-                •	Rent stabilization & control 
-        </p>
-     	<p>•	Equitable distribution in protections and services
-                •	More services should be available in hardest hit neighborhoods and population groups, for example the incarcerated and children.  
-        </p>
+		<h2>Possible Solutions</h2>
+     	<p>Homelessness is a complex and difficult to solve. There isn’t an easy fix. The first step is to recognize the overarching drivers of homelessness—racism, economic inequality, and out of reach physical and mental health services. Policy recommendations must be focused not only on reducing the population in New York shelters but preventing homelessness in the first place. </p>
+     	<p><b>Prevention:</b> Preventative measures include increasing access to information and services. Expanded availability of affordable rental units & rental assistance vouchers. Supporting at-risk seniors, veterans, and youth, and reducing the number of incarcerated individuals. Finally, New York should provide emergency eviction assistance and legal support for low-income tenants facing eviction </p>
+     	<p><b>Reduction:</b> To reduce the number of individuals experiencing homelessness in New York, the city must expand and build more deeply affordable units, and increase the city’s rental assistance voucher amount to match market-rate housing. There should be additional outreach to New Yorkers living unsheltered, on the street, as well as a reduction in poor and dangerous shelter conditions. </p>
+		<i>Info. Source: https://ny.curbed.com/2020/2/25/21146143/homelessness-new-york-city-how-to-fix</i>
+		<br><br>
+		<br><br>
+		</div>
 		</div>
      </div>
   </main><!-- /.container -->
   
-  <a href="#top" style="margin-left:80px">Jump to top of page</a>
+  <a href="#top" class="btn btn-primary" style="margin-left:80px">Jump to top of the page</a>
   <br><br>
 </body>
 
 <footer class="footer">
-       <p style="margin-left:80px"><i>Prepared for Big Data Assignment 5: Jingyi Liu 922729914 & Akshay Choudhary 917669873</i><p>
+       <p style="margin-left:80px"><i>Authors: Sarah Littlefield 917704326 & Akshay Choudhary 917669873 & Jingyi Liu 922729914      Big Data & Visualization Final Project</i><p>
 </footer>
 
 <script type="text/javascript">
-
-
-   var svg = d3.select("div#secondvisualdiv")
-						   .append("svg")
-						   .attr("viewBox", "0 0 1200 800")
-  						   .attr("preserveAspectRatio", "xMinYMid")  
-						   
-				svg.append("image") 
-				.attr("xlink:href", "https://github.com/Jingyi-Arch/Jingyi-Arch.github.io/blob/master/5stock_graph.JPG?raw=true")
-                .attr("height", 650)
-                .attr("x",40)
-                .attr("y",0)
-				.attr("class", "img1opacity");
 				
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 740)
-    			.attr("text-anchor", "middle")
-    			.text("Data & Info. Source")
-    			.attr("class", "text1opacity")	
-
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 780)
-    			.attr("text-anchor", "middle")
-    			.text("NYC Open Data: https://opendata.cityofnewyork.us/")
-    			.attr("class", "text1opacity")	
-
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 820)
-    			.attr("text-anchor", "middle")
-    			.text("Coalition for Homelessness 2020: https://www.coalitionforthehomeless.org/state-of-the-homeless/")
-    			.attr("class", "text1opacity")
-
-                 svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 860)
-    			.attr("text-anchor", "middle")
-    			.text("American Community Survey (ACS) 2018: https://www.census.gov/programs-surveys/acs")
-    			.attr("class", "text1opacity")				
-				
-   var svg = d3.select("div#thirdvisualdiv")
-						   .append("svg")
-						   .attr("viewBox", "0 0 1200 800")
-  						   .attr("preserveAspectRatio", "xMinYMid")  
-						   
-				svg.append("image") 
-				.attr("xlink:href", "https://github.com/Jingyi-Arch/Jingyi-Arch.github.io/blob/master/6spatial.JPG?raw=true")
-                .attr("height", 700)
-                .attr("x",350)
-                .attr("y",0)
-				.attr("class", "img2opacity");
-				
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 740)
-    			.attr("text-anchor", "middle")
-    			.text("Data & Info. Source")
-    			.attr("class", "text2opacity")	
-
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 780)
-    			.attr("text-anchor", "middle")
-    			.text("Eviction Data @ NYC Open Data: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4")
-    			.attr("class", "text2opacity")	
-
-                 svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 820)
-    			.attr("text-anchor", "middle")
-    			.text("ACS 5-year Estimates 2018: https://www.census.gov/programs-surveys/acs")
-    			.attr("class", "text2opacity")	
-
-var svg = d3.select("div#fourthvisualdiv")
-						   .append("svg")
-						   .attr("viewBox", "0 0 1200 800")
-  						   .attr("preserveAspectRatio", "xMinYMid")  
-						   
-				svg.append("image") 
-				.attr("xlink:href", "https://github.com/Jingyi-Arch/Jingyi-Arch.github.io/blob/master/8.saving.JPG?raw=true")
-                .attr("height", 630)
-                .attr("x",0)
-                .attr("y",0)
-				.attr("class", "img3opacity");
-				
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 740)
-    			.attr("text-anchor", "middle")
-    			.text("Data & Info. Source")
-    			.attr("class", "text3opacity")	
-
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 780)
-    			.attr("text-anchor", "middle")
-    			.text("NYC Income Percentile: https://statisticalatlas.com/county-subdivision/New-York")
-    			.attr("class", "text3opacity")	
-
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 820)
-    			.attr("text-anchor", "middle")
-    			.text("Median Savings by Income: https://www.magnifymoney.com/blog/news/average-american-savings")
-    			.attr("class", "text3opacity")		
-
-                svg.append("text")
-    			.attr("x", 650)
-    			.attr("y", 860)
-    			.attr("text-anchor", "middle")
-    			.text("Percentage of Income Spent on Rent: Page 29, CFH-State-of-the-Homeless-2017.pdf ")
-    			.attr("class", "text3opacity")	
-
-
    
    var controller = new ScrollMagic.Controller();
     
@@ -316,21 +208,25 @@ var svg = d3.select("div#fourthvisualdiv")
         .setClassToggle(".img3opacity", "active") 
         .addTo(controller);
 		
-			
-var slideIndex = 0;
-carousel();
+    		
+						   
+var slideIndex = 1;
+showDivs(slideIndex);
 
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none"; 
-  }
-  slideIndex++;
-  if (slideIndex > x.length) {slideIndex = 1} 
-  x[slideIndex-1].style.display = "block"; 
-  setTimeout(carousel, 1000); // Change image every 2 seconds 
-}								
+function plusDivs(n) {
+    showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1} 
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+    x[slideIndex-1].style.display = "block"; 
+}							
 </script>
 </body>
 </html>
