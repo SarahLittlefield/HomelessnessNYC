@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Show polygon information on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; left:100; width: 600; }
+</style>
+</head>
+<body>
+<style>
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+/**
+* Create a position for the map
+* on the page */
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/**
+* Set rules for how the map overlays
+* (information box and legend) will be displayed
+* on the page. */
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+	font-size: 10px;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.0);
+  margin-left: 10px;
+  font-family: Arial, sans-serif;
+	font-size: 16px;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 40px;
+  margin-top: 10px;
+	margin-left: 10px;
+  width: 300px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 130px;
+  margin-top: 50px;
+	margin-left: 10px;
+  width: 100px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+</style>
+<div id='map' style='width: 680px; height: 500px;'></div>
+<div class='title'><p>Where is Risk for Becoming Homeless Highest?</p></div>
+<div class='map-overlay' id='legend'><p><strong>Risk Index Ranking</strong></p></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhsaXR0bGVmaWVsZCIsImEiOiJjazhxMHNsdXUwMGc2M2xwanBwNDBsN2plIn0.91xCojKahPyqKj1BHofjYg';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/sarahlittlefield/cka05pay60vpd1imqwypxkueg',
+center: [-74.0, 40.7], // starting position [lng, lat]
+zoom: 9.25 // starting zoom
+});
+
+map.on('load', function() {
+
+//legend
+var layers = ['1-429', '430-857', '858-1285', '1286-1713', '1714-2141'];
+var colors = ['#08529b', '#3182bd', '#6baed6', '#bdd7e7', '#f0f4ff'];
+
+for (i = 0; i < layers.length; i++) {
+  var layer = layers[i];
+  var color = colors[i];
+  var item = document.createElement('div');
+  var key = document.createElement('span');
+  key.className = 'legend-key';
+  key.style.backgroundColor = color;
+
+  var value = document.createElement('span');
+  value.innerHTML = layer;
+  item.appendChild(key);
+  item.appendChild(value);
+  legend.appendChild(item);
+}
+// Add a source for the state polygons.
+map.addSource('states', {
+'type': 'geojson',
+'data':
+'https://raw.githubusercontent.com/SarahLittlefield/big_data/master/risk_surface_rounded_Feature.geojson'
+});
+
+// Add a layer showing the state polygons.
+map.addLayer({
+'id': 'states-layer',
+'type': 'fill',
+'source': 'states',
+'paint': {
+'fill-color': 'rgba(200, 100, 240, 0.0)',
+'fill-outline-color': 'rgba(225, 225, 2225, 0.2 )',
+}
+});
+
+// When a click event occurs on a feature in the states layer, open a popup at the
+// location of the click, with description HTML from its properties.
+map.on('click', 'states-layer', function(e) {
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+//.setHTML(e.features[0].properties.LABELRANK + e.feature[0].properties.RentBurden )
+.setHTML(("<strong>Risk Ranking:</strong>") + (e.features[0].properties.LABELRANK) +"<p>"+"<strong>Rental Burden Rate:</strong>"+(e.features[0].properties.RentBurden)+ "%"+"</p>" + "<p>"+"<strong>Disability:</strong>"+(e.features[0].properties.Disability)+"%"+"</p>"
+ + "<p>"+"<strong>Unemployment Rate:</strong>"+(e.features[0].properties.Unemployme)+"%"+"</p>" + "<p>"+"<strong>Poor Physical Health Rate:</strong>"+(e.features[0].properties.PHLTH)+"%"+"</p>" + "<p>"+"<strong>Poor Mental Health Rate:</strong>"+(e.features[0].properties.MHLTH)+"%"+"</p>"
+ + "<p>"+"<strong>Prevalence of Binge Drinking:</strong>"+(e.features[0].properties.BINGE)+"%"+"</p>"+ "<p>"+"<strong>Eviction Filings:</strong>"+(e.features[0].properties.Count_)+ "</p>"
+)
+.addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the states layer.
+map.on('mouseenter', 'states-layer', function() {
+map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'states-layer', function() {
+map.getCanvas().style.cursor = '';
+});
+});
+</script>
+
+</body>
+</html>
