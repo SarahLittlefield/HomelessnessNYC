@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style> /* set the CSS */
+
+
+  body{
+     background-color: white;
+  }
+
+ :root {
+   --accent-color: #ff2e8f;
+   --annotation-anomaly-color: #888888;
+ }
+
+  svg {
+     background-color: white;
+     font-family: 'Lato';
+  }
+
+  path.line {
+     fill: none;
+     stroke: #a2d5f2;
+     stroke-width: 2px;
+   }
+
+ .annotation path {
+   stroke: var(--accent-color);
+   fill: none;
+ }
+ .annotation path.connector-arrow,
+ .title text, .annotation text,
+ .annotation.callout.circle .annotation-subject path {
+   fill:var(--accent-color);
+   font-size: 60%;
+   font-family: sans-serif;
+ }
+ .annotation.anomaly path {
+  stroke: var(--annotation-anomaly-color);
+  stroke-width: 1px;
+}
+
+.annotation.anomaly text {
+  fill: var(--annotation-anomaly-color);
+}
+ .annotation-note-bg {
+   fill: rgba(255, 255, 255, 0);
+ }
+
+ .annotation-note-title {
+   font-weight: bold;
+ }
+
+ .annotation.xythreshold {
+   cursor: move;
+ }
+
+ .hidden {
+   display: none;
+ }
+
+ text.hover {
+   font-size: .3em;
+ }
+
+ text.title {
+   font-family:sans-serif;
+   font-size: .7em;
+ }
+ text.text {
+   font-family:sans-serif;
+   font-size: .7em;
+ }
+</style>
+<body>
+
+<!-- load the d3.js library -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+
+
+<!-- Create a div where the graph will take place -->
+<svg width=660 height=400>
+      <text class="title" x=70 y=50></text>
+    </svg>
+
+<script>
+"use strict";
+
+// line chart code: https://bl.ocks.org/d3noob/402dd382a51a4f6eea487f9a35566de0
+// time series from: http://bl.ocks.org/mbostock/3883245
+// set the dimensions and margins of the graph
+var margin = { top: 50, right: 50, bottom: 50, left: 100 },
+    height = 500 - margin.top - margin.bottom;
+var maxWidth = 660 - margin.left - margin.right;
+var width = 660 - margin.left - margin.right;
+
+var parseTime = d3.timeParse("%d-%b-%y");
+var _x = d3.scaleTime().range([0, width]);
+var _y = d3.scaleLinear().range([height, 0]);
+
+var valueline = d3.line().x(function (d) {
+  return _x(d.date);
+}).y(function (d) {
+  return _y(d.close);
+});
+
+var svg = d3.select("svg").attr("width", 660).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("https://raw.githubusercontent.com/SarahLittlefield/big_data/master/homelessness_d3_v3.csv", function (error, data) {
+  if (error) throw error;
+
+  data.forEach(function (d) {
+    d.date = parseTime(d.date);
+    d.close = +d.close;
+  });
+
+  _x.domain(d3.extent(data, function (d) {
+    return d.date;
+  }));
+  _y.domain([0, d3.max(data, function (d) {
+    return d.close;
+  })]);
+
+  svg.append("path").data([data]).attr("class", "line").attr("d", valueline);
+
+  svg.append("g").attr("class", "x-axis").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(_x));
+
+  svg.append("g").call(d3.axisLeft(_y));
+
+  // text label for the y axis
+svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -70)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("font-family","sans-serif")
+    .style("font-size","15px")
+    .text("Individuals Housed in New York City Shelters");
+	
+	  // graph title 
+svg.append("text")
+    .attr("y", -30)
+    .attr("x",0)
+    .attr("dy", "1em")
+    .style("text-anchor", "left")
+    .style("font-family","sans-serif")
+    .style("font-size","15px")
+    .text("Homelessness Policymaking and Implementation In New York City");
+
+
+//annotation
+  var labels2 = [{
+  data: { date: "01-Aug-88", close:26600},
+  dy: 10,
+  dx: 0,
+  note: {
+    title:"August 1988",
+    label:" To reduce the use of hotel rooms as shelters, the Koch Administration stops assigning new families to the hotels. Families are placed in barracks-style shelters or shelters with private rooms, congregate dining facilities, and stricter supervision than at hotels.",
+    align: "middle" }
+      }, {
+    data: { date: "01-Oct-90", close:19877},
+    dy: 10,
+    dx: 40,
+    note: {
+      title:"October 1990",
+      label:"Alternative Pathways Program (APP) is implemented to curb evictions, and provide housing to families doubled up in private apartments.",
+      align: "middle" }
+        }, {
+      data: { date: "01-Jan-93", close:23269},
+      dy: 10,
+      dx: 40,
+      note: {
+        title:"1993",
+        label:"The New York City Department of Homeless Services is created",
+        align: "middle" }
+          }, {
+        data: { date: "01-Jul-94", close:23800},
+        dy: 2,
+        dx: 90,
+        note: {
+          title:"1994",
+          label:"The Giuliani administration stated that implementing “small, community-based programs, provided by not-for-profits”, to combat homelessness, as one of its ten primary objectives. In the following years, many of New York City’s shelters we privatized.",
+          align: "middle" }
+            }, {
+          data: { date: "22-Apr-99", close:22457},
+          dy: 10,
+          dx: 40,
+          note: {
+            title:"April 1999",
+            label:"Mayor Giuliani and Governor Pataki announced a second “New York/New York Agreement” to create an additional fifteen hundred supported housing units for the homeless mentally ill over five years.",
+            align: "middle" }
+              }, {
+            data: { date: "01-Jan-04", close:38317},
+            dy: 60,
+            dx: 20,
+            note: {
+              title:"2004",
+              label:"Bloomberg launches the Housing First strategy, a commitment in 2004 to reduce the city’s shelter population—by two-thirds by the end of 2009. This strategy launched the Home Base program, establishing local offices in hard-hit neighborhoods.",
+              align: "middle" }
+                }, {
+              data: { date: "19-Oct-04", close:36930},
+              dy: 20,
+              dx: 90,
+              note: {
+                title:"October 2004",
+                label:"In a controversial decision, the Department of Homelessness Services ended its policy of giving shelter residents priority for entering public housing and receiving Section 8 vouchers. Instead, families applying to DHS would get rental-assistance grants— called Housing Stability Plus (HSP)—for up to five years.",
+                align: "middle" }
+                  }, {
+                data: { date: "03-Nov-05", close:31962},
+                dy: 10,
+                dx: 60,
+                note: {
+                  title:"November 2005",
+                  label:"New York/New York III Supportive Housing Agreement is passed. This expands housing for youths, people suffering from HIV/AIDS and other medical conditions, and people with a history of substance abuse.",
+                  align: "middle" }
+                    }, {
+                  data: { date: "01-Mar-11", close:39466},
+                  dy: -10,
+                  dx: -40,
+                  note: {
+                    title:"March 2011",
+                    label:"The housing voucher program intended to replace section 8 vouchers comes to an end due to state budget cuts.",
+                    align: "middle" }
+                      }, {
+                    data: { date: "01-Apr-13", close:50739},
+                    dy: 10,
+                    dx: 40,
+                    note: {
+                      title:"2013",
+                      label:"Bill de Blasio runs for Mayor on a “tale of two cities” platform, emphasizing the need for affordable housing and services for New Yorkers.",
+                      align: "middle" }
+                        }, {
+                      data: { date: "01-May-14", close:55258},
+                      dy: 10,
+                      dx: 60,
+                      note: {
+                        title:"May 2014",
+                        label:"The de Blasio Administration releases Housing New York: a 10-Year Housing Plan to build or preserve 200,000 affordable apartments. A portion of these homes are dedicated for low-income and homeless New Yorkers.",
+                        align: "middle" }
+                          }, {
+                        data: { date: "02-Sep-15", close:59305},
+                        dy: 50,
+                        dx: 30,
+                        note: {
+                          title:"September 2015",
+                          label:"The Living in Communities (LINC) program is launched, which expanded rental subsidies designed to move families out of the shelter system.",
+                          align: "middle" }
+                              }, {
+                            data: { date: "01-Dec-19", close:62590},
+                            dy: 50,
+                            dx: -20,
+                            note: {
+                              title:"December 2019",
+                              label:"New legislation is introduced requiring housing developments receiving city financial assistance to set aside at least 15 percent of newly constructed apartments for homeless New Yorkers.",
+                              align: "middle" }
+                            }, {
+                          data: { date: "01-Oct-83", close:14238},
+                          dy: -170,
+                          dx: 60,
+                          note: {
+                            title:"1983",
+                            label:"The lawsuit McCain v. Koch challenged the City's and State's failure to provide safe, suitable and adequate emergency housing, assistance and services to homeless families with children.",
+                            align: "middle" }
+}].map(function (l) {
+//  l.note = Object.assign({}, l.note, { title: "Close: " + l.data.close,
+//    label: "" + l.data.date });
+  l.subject = { radius: 5};
+
+  return l;
+});
+
+var timeFormat = d3.timeFormat("%d-%b-%y");
+
+window.makeAnnotations = d3.annotation().annotations(labels2).type(d3.annotationCalloutCircle).accessors({ x: function x(d) {
+    return _x(parseTime(d.date));
+  },
+  y: function y(d) {
+    return _y(d.close);
+  }
+}).accessorsInverse({
+  date: function date(d) {
+    return timeFormat(_x.invert(d.x));
+  },
+  close: function close(d) {
+    return _y.invert(d.y);
+  }}).on('subjectover', function (annotation) {
+  annotation.type.a.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", false);
+  }).on('subjectout', function (annotation) {
+  annotation.type.a.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", true);
+  });
+  svg.append("g").attr("class", "anomaly").call(makeAnnotations);
+
+  svg.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", true);
+  //Add annotations
+  var labels = [{
+    data: { date: "1-Jan-90", close: 20995 },
+    dy: -100,
+    dx: 0,
+    className: "anomaly",
+    note: {
+      title:"David Dinkins",
+      label:"1990-1994",
+      align: "middle" }
+  }, {
+    data: { date: "01-Jan-94", close: 23526 },
+    dy: -100,
+    dx: 20,
+    className: "anomaly",
+    note: {
+      title:"Rudy Giuliani",
+      label:"1994-2001",
+      align: "middle" }
+  }, {
+    data: { date: "01-Jan-02", close:31063 },
+    dy: -100,
+    dx: 0,
+    className: "anomaly",
+    note: {
+      title:"Michael Bloomberg",
+      label:"2002-2013",
+      align: "middle" }
+  },
+  {
+    data: { date: "01-Jan-14", close:53615},
+    dy: -10,
+    dx: -40,
+    className: "anomaly",
+    note: {
+      title:"Bill de Blasio",
+      label:"2014-2021",
+      align: "middle" }
+  }].map(function (l) {
+  //  l.note = Object.assign({}, l.note, { title: "Close: " + l.data.close,
+  //    label: "" + l.data.date });
+    l.subject = { radius: 5};
+
+    return l;
+  });
+
+  var timeFormat = d3.timeFormat("%d-%b-%y");
+
+  window.makeAnnotations = d3.annotation().annotations(labels).type(d3.annotationCalloutCircle).accessors({ x: function x(d) {
+      return _x(parseTime(d.date));
+    },
+    y: function y(d) {
+      return _y(d.close);
+    }
+  }).accessorsInverse({
+    date: function date(d) {
+      return timeFormat(_x.invert(d.x));
+    },
+    close: function close(d) {
+      return _y.invert(d.y);
+    }
+  });
+
+  svg.append("g").attr("class", "anomaly").call(makeAnnotations);
+
+//  svg.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", false);
+});
+</script>
+</body>
