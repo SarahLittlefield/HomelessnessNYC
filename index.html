@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Scrollytelling Assignment</title>
-	
+
    	<script src="https://d3js.org/d3.v4.min.js"></script>
    	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500" rel="stylesheet">
    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
-	
+
 	<!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template -->
     <link href="./clean-blog2.css" rel="stylesheet">
-	
+
     <style>
 
 		p {
@@ -32,22 +32,22 @@
 			width:100%;
 			height:600px;
 			padding-left:10%;
-			padding-right:10px;		
+			padding-right:10px;
 		}
-		
+
 		h1 {
 			font-size:60px;
 			font-weight:200;
 			line-height:1.3;
 		}
-		
+
 		#firstvisualdiv, #secondvisualdiv, #thirdvisualdiv {
           position: -webkit-sticky;
           position: sticky;
           top: -1px;
     	}
-		
-    	
+
+
    .text1opacity, .text2opacity, .text3opacity {
         font-size:25px;
         fill:gray;
@@ -55,7 +55,7 @@
         transition: opacity 0.8s;
          -webkit-transition: opacity 0.8s;
         }
-		
+
 	.img1opacity, .img2opacity, .img3opacity {
         opacity:0;
         transition: opacity 0.8s;
@@ -65,18 +65,18 @@
 		.active {
         	opacity:1;
     	}
- 
+
     #anchor {
      color: grey;
 	 font-size:14px;
 	 padding: 80px;
       }
-	  
+
 	#move{
-	padding: 20px; 
+	padding: 20px;
 	margin-left:30px;
 	}
-	
+
 	</style>
 </head>
 
@@ -94,9 +94,9 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>Tackling Homelessness At Its Roots:</h1>
-            <h2 class="subheading"> Evaluating Rent Burden & Eviction as a Risk Factor for Homelessness 
-			  <br>Under Current NYC Coronavirus Crisis</h2>
+            <h1>Tackling Homelessness at its Roots:</h1>
+            <h2 class="subheading"> Evaluating  Risk Factors for Homelessness
+			  <br>Under the NYC Coronavirus Crisis</h2>
           </div>
         </div>
       </div>
@@ -111,11 +111,10 @@
      	<br><br>
 		<h2>Drivers of Homelessness</h2>
 		<br><br>
-     	<p>In the NYC shelter population, 63% of them are adults, and 37% of them are children and teenagers. There are several drivers contributing to homelessness, and we will focus on rent burden and eviction on this webpage, the factor that accounts for 33% homeless population, which is also the major reason why adults become homeless. However, before talking about the rent burden in detail, we would also like to introduce all the drivers of homelessness briefly. </p>    	
-     	<p>People may be surprised that why there are so many homeless children. The reason is because of Domestic Violence and Family Dynamics. 37% of homeless people choose to leave homes due to domestic violence, and nearly two-thirds of them were children. Apart from this, 10% of people become homeless due to Family Dynamics, caused by Substance Abuse, Neglect at Home, Mental Illness, and Gender Identity Issues. </p>   	
-     	<p>Under the current Covid-19 crisis, the hygiene conditions in shelters become vulnerable. People crowding in high-density shelters are easier to get infected. So, if possible, we hope that these homeless children could go back home. In contrast, most adults living in shelters due to rent burden and eviction have no choices at all. </p>
-     	<p>The worse thing is that more people may become homeless because of current high-rate unemployment. Due to Covid-19, many industries like restaurants and traveling are laying off people. Without enough savings, especially for originally low-income people, the rent burden and eviction risk will dramatically increase, possibly leading to homelessness. We certainly don’t want this to happen, especially when the hygiene conditions in shelters become risky. Unfortunately, this unemployment caused by Covid-19 is not guaranteed to be recovered any time soon. Temporary policies, such as eviction order suspension, may not work well in the long term, and therefore we are here to analyze the NYC rent burden in detail. We will also dive into housing policies over the years to provide possible solutions to eviction prevention.</p>
-		<p>Apart from this rent burden as a major driver, some other drivers for adult homelessness include physical care, jail release, migration, and so on. </p>
+     	<p>In the NYC shelter population, 63% of residents are adults and 37% are children and teenagers. There are several drivers contributing to homelessness, broadly stemming from current inequality and a legacy of oppression in NYC. This website focuses on some of the specific drivers of housing insecurity behind these systems, drawing from findings in the January 2020 City Council report, Our Homelessness Crisis: A Case for Change. For example, factors such as rent burden and eviction,  account for an estimated 33% of the city’s homeless population, and are one of the most important reasons why New York City adults experience homelessness. The main reasons for experiencing homelessness amongst children and teenagers are domestic violence and family dynamics. 37% of people experiencing homelessness choose to leave homes due to domestic violence, and nearly two-thirds of these people are children and teenagers. Meanwhile, 10% of people experience homelessness as a result of other family dynamics including  substance abuse, neglect at home, mental illness, and gender identity issues. Some other drivers for adult homelessness include physical care, jail release, and migration. Understanding the conditions that may lead to housing insecurity will allow the public and policymakers to better serve and protect New York City’s most vulnerable residents.
+      </p>
+     	<p>Under the current COVID-19 crisis, the crowded conditions in shelters have made residents vulnerable to infection. Furthermore, the high rate of unemployment citywide may exacerbate homelessness. Without enough savings, low-income people are particularly vulnerable to homelessness, and the instability caused by COVID-19 may exacerbate drivers of homelessness like rent burden, domestic violence, and poverty. populations. Unfortunately, there is no guarantee that COVID-19-related unemployment will decrease any time soon. Temporary policies, such as eviction order suspensions, may not work well in the long term. Therefore, this website will analyze potential drivers of homelessness in NYC in detail, while also diving into housing policies over the years to provide possible solutions
+      </p>
 		<i>Info. Source: online PDF Our Homelessness Crisis: The Case For Change @ https://council.nyc.gov/data/homeless/ </i>
 		</div>
      	<div class="col-8">
@@ -127,10 +126,13 @@
      	<br><br>
 		<h2>Spatial Risk Diagram</h2>
      	<br><br>
-     	<p>For the preventive measures to be implemented effectively, the problem of homelessness needs to be identified effectively. This map shows a risk index created for homelessness at the census tract level of New York city. It shows that some areas are more prone to the people becoming  homeless based on certain characteristics. </p>
-		<p>A series of factors are included in creating this index which are supposed to be a cause for homelessness. These factors include rental burden (percentage of income spent on rent), unemployment rate, disability, poor mental and physical health, prevalence of binge drinking & number of evictions filed. Data available for these factors is from the year 2018. A simple average of each factor is taken to give equal weightage to each factor as exact weightage of each factor is unclear and needs further exploration. </p>
-		<p>Finally, the risk index for each tract is created by assuming a hypothetical census tract that has the worst possible value for each risk factor. Each census tract is ranked based on the similarity of the tract with the hypothetical census tract creating a relative risk index for each census tract in new york city. Ranking 1 represents the complete match with the hypothetical census tract and is therefore the highest risk area, whereas 2141 represents the least matching with the hypothetical and is least risky area for homelessness. </p>
-		<i>Citation: https://learn.arcgis.com/en/projects/help-end-homelessness/</i>
+     	<p> For preventive measures to be implemented effectively, the problem of homelessness needs to be identified effectively. This map shows a risk index created for homelessness at the census tract level. It shows that some areas are more prone to residents becoming homeless based on certain characteristics.
+      </p>
+		<p> A series of factors are included to create this index, which articulate potential drivers of homelessness that were identified in the Our Homelessness Crisis report.  These factors include rent burden (percentage of income spent on rent), unemployment rate, disability, poor mental and physical health, prevalence of binge drinking, number of evictions filed. Data available for these factors is from the year 2018. A simple average of each factor is taken to give equal weight to each factor, as the exact weight of each factor is unknown and needs further exploration.
+     </p>
+		<p> Finally, the risk index for each tract is created by assuming a hypothetical census tract that has the worst possible value for each risk factor. Each census tract is ranked based on the similarity with the hypothetical census tract, creating a relative risk index for each census tract in New York City. Ranking 1 represents the complete match with the hypothetical census tract and is therefore the highest risk area, whereas 2,141 represents the least close match with the hypothetical tract and is the area where residents are least likely to experience homelessness.
+     </p>
+		<i>Info. Source: https://learn.arcgis.com/en/projects/help-end-homelessness/</i>
      	</div>
      	<div class="col-8">
      		<div id="secondvisualdiv">
@@ -141,10 +143,14 @@
      	<br><br>
 		<h2>Housing Policies & Rent Burden Over the History</h2>
      	<br><br>
-     	<p>On December 5, 1979, in a landmark decision, the New York State Supreme Court ordered the City and State to provide shelter for homeless men. After two years of negotiation, the court decision Callahan v. Carey established the right to shelter in New York City. In the decades that followed, tackling the pervasive problem of homelessness spanned through mayors from across the political spectrum—from Dinkins focus on permanent shelter to Guiliani’s punitive approach. In the 21st century, Bloomberg sharpened regulation, and de Blasio shifted the conversation from a right to shelter to a right to housing. </p>
-		<p>However, the problem keeps growing, and today New Yorkers are looking to innovative solutions to provide permanent shelter to individuals experiencing homelessness. </p>
-     	<p> Looking at the percent change from 2006 to 2016, the Great Recession caused wages to fall and homelessness to rise. Yet, as the economy recovered, the plight of homeless New Yorkers did not. Political leaders and activists point to a rise in inequality and lack of access to opportunity in New York City, particularly focusing on the inadequate amount of affordable housing, in an increasingly unaffordable housing market. </p>
-     	<p>“We can’t solve homelessness without addressing the affordability and stability crisis” Giselle Routhier, policy director at Coalition for the Homeless.</p>
+     	<p> On December 5, 1979, in a landmark decision, the New York State Supreme Court ordered the City and State to provide shelter for homeless men. After two years of negotiation, the court decision Callahan v. Carey established the right to shelter in New York City. In the decades that followed, tackling the pervasive problem of homelessness spanned through mayors from across the political spectrum—from Dinkins’s focus on permanent shelter to Guiliani’s more punitive approach. In the 21st Century, Bloomberg sharpened regulation, while de Blasio shifted the conversation from a right to shelter to a right to housing.
+      </p>
+		<p> However, New York City’s homelessness problem continues to grow; today New Yorkers are looking for innovative solutions to provide permanent shelter to individuals experiencing homelessness.
+     </p>
+     	<p> Looking at the percent change from 2006 to 2016, the Great Recession caused wages to fall and homelessness to rise. Yet, as the economy recovered, the plight of homeless New Yorkers did not. Political leaders and activists point to a rise in inequality and lack of access to opportunity in New York City, particularly focusing on the inadequate amount of affordable housing in an increasingly unaffordable housing market.
+      </p>
+     	<p>“We can’t solve homelessness without addressing the affordability and stability crisis,” said Giselle Routhier, policy director at Coalition for the Homeless.
+      </p>
 		<i>Info. Source: https://ny.curbed.com/2020/2/25/21146143/homelessness-new-york-city-how-to-fix</i>
 		</div>
      	<div class="col-8">
@@ -160,9 +166,10 @@
 		<div id="fourthvisualdiv">
 		<br><br>
 		<h2>Possible Solutions</h2>
-     	<p>Homelessness is a complex and difficult to solve. There isn’t an easy fix. The first step is to recognize the overarching drivers of homelessness—racism, economic inequality, and out of reach physical and mental health services. Policy recommendations must be focused not only on reducing the population in New York shelters but preventing homelessness in the first place. </p>
-     	<p><b>Prevention:</b> Preventative measures include increasing access to information and services. Expanded availability of affordable rental units & rental assistance vouchers. Supporting at-risk seniors, veterans, and youth, and reducing the number of incarcerated individuals. Finally, New York should provide emergency eviction assistance and legal support for low-income tenants facing eviction </p>
-     	<p><b>Reduction:</b> To reduce the number of individuals experiencing homelessness in New York, the city must expand and build more deeply affordable units, and increase the city’s rental assistance voucher amount to match market-rate housing. There should be additional outreach to New Yorkers living unsheltered, on the street, as well as a reduction in poor and dangerous shelter conditions. </p>
+     	<p> Homelessness is complex and difficult to solve. There isn’t an easy fix. The first step is to recognize the overarching drivers of homelessness—racism, economic inequality, and poor access to physical and mental health services. Policy recommendations must be focused not only on reducing the population in New York shelters but preventing homelessness in the first place.
+      </p>
+     	<p><b>Prevention:</b> Preventative measures include increasing access to information and services; expanded availability of affordable rental units, and rental assistance vouchers.; supporting at-risk seniors, veterans, and youth; and reducing the number of incarcerated individuals. Finally, New York should provide emergency eviction assistance and legal support for low-income tenants facing eviction.</p>
+     	<p><b>Reduction:</b> To reduce the number of individuals experiencing homelessness in New York, the city must expand its affordable housing units and increase the city’s rental assistance vouchers to match market-rate housing. There should be additional outreach to unsheltered New Yorkers living on the street, as well as a reduction in poor and dangerous shelter conditions. </p>
 		<i>Info. Source: https://ny.curbed.com/2020/2/25/21146143/homelessness-new-york-city-how-to-fix</i>
 		<br><br>
 		<br><br>
@@ -170,7 +177,7 @@
 		</div>
      </div>
   </main><!-- /.container -->
-  
+
   <a href="#top" class="btn btn-primary" style="margin-left:80px">Jump to top of the page</a>
   <br><br>
 </body>
@@ -180,36 +187,36 @@
 </footer>
 
 <script type="text/javascript">
-				
-   
+
+
    var controller = new ScrollMagic.Controller();
-    
+
     	new ScrollMagic.Scene({triggerElement: "#text1"})
-        	.setClassToggle(".text1opacity", "active") 
+        	.setClassToggle(".text1opacity", "active")
         	.addTo(controller);
-        
+
     	new ScrollMagic.Scene({triggerElement: "#text2"})
-        	.setClassToggle(".text2opacity", "active") 
+        	.setClassToggle(".text2opacity", "active")
         	.addTo(controller);
-                        
+
 		new ScrollMagic.Scene({triggerElement: "#text3"})
-        	.setClassToggle(".text3opacity", "active") 
+        	.setClassToggle(".text3opacity", "active")
         	.addTo(controller);
-			
+
 		new ScrollMagic.Scene({triggerElement: "#img1"})
-        	.setClassToggle(".img1opacity", "active") 
+        	.setClassToggle(".img1opacity", "active")
         	.addTo(controller);
-        
+
     	new ScrollMagic.Scene({triggerElement: "#img2"})
-        	.setClassToggle(".img2opacity", "active") 
+        	.setClassToggle(".img2opacity", "active")
         	.addTo(controller);
-			
+
 		new ScrollMagic.Scene({triggerElement: "#img3"})
-        .setClassToggle(".img3opacity", "active") 
+        .setClassToggle(".img3opacity", "active")
         .addTo(controller);
-		
-    		
-						   
+
+
+
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -220,13 +227,13 @@ function plusDivs(n) {
 function showDivs(n) {
     var i;
     var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {slideIndex = 1} 
+    if (n > x.length) {slideIndex = 1}
     if (n < 1) {slideIndex = x.length} ;
     for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none"; 
+        x[i].style.display = "none";
     }
-    x[slideIndex-1].style.display = "block"; 
-}							
+    x[slideIndex-1].style.display = "block";
+}
 </script>
 </body>
 </html>
