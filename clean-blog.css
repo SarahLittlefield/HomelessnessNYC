@@ -43,6 +43,20 @@ blockquote {
   color: #868e96;
 }
 
+.navbar {
+    background-color: transparent;
+}
+
+.top-nav-collapse {
+    background-color: #4285F4;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #4285F4;
+    }
+}
+
 .section-heading {
   font-size: 36px;
   font-weight: 700;
